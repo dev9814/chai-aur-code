@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTodo } from '../contexts'
 
-function TodoItem({todo, par}) {
+function TodoItem({todo}) {
 
     const [isTodoEditable, setIsTodoEditable] = useState(false)
     const [todoMsg, setTodoMsg] = useState(todo.todo)
@@ -12,6 +12,7 @@ function TodoItem({todo, par}) {
         updateTodo(todo.id, {...todo, todo: todoMsg})
         // First we are spreading todo with help of ...todo
         // Second we are only updating text with help of todo: todoMsg
+        return;
     }
 
     const toggleCompleted = () => {
@@ -48,6 +49,7 @@ function TodoItem({todo, par}) {
 
                     if (isTodoEditable) {
                         editTodo();
+                        setIsTodoEditable((prev) => !prev)
                     } else setIsTodoEditable((prev) => !prev);
                 }}
                 disabled={todo.completed}
